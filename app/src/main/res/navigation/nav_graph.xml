@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/navFirstFragment">
+
+    <fragment
+        android:id="@+id/navFirstFragment"
+        android:name="com.example.navigationdemo.NavFirstFragment"
+        android:label="fragment_nav_first"
+        tools:layout="@layout/fragment_nav_first">
+        <action
+            android:id="@+id/action_navFirstFragment_to_navSecondFragment"
+            app:destination="@id/navSecondFragment"
+            app:popEnterAnim="@animator/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <action
+            android:id="@+id/action_navFirstFragment_to_navThirdFragment"
+            app:destination="@id/navThirdFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navSecondFragment"
+        android:name="com.example.navigationdemo.NavSecondFragment"
+        android:label="fragment_nav_second"
+        tools:layout="@layout/fragment_nav_second">
+        <action
+            android:id="@+id/action_navSecondFragment_to_navFourFragment"
+            app:destination="@id/navFourFragment"
+            app:enterAnim="@anim/nav_default_enter_anim"
+            app:exitAnim="@anim/nav_default_exit_anim"
+            app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+        <argument
+            android:name="p1"
+            app:argType="string"
+            android:defaultValue='""' />
+        <argument
+            android:name="p2"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <action
+            android:id="@+id/action_navSecondFragment_self2"
+            app:destination="@id/navSecondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navThirdFragment"
+        android:name="com.example.navigationdemo.NavThirdFragment"
+        android:label="fragment_nav_third"
+        tools:layout="@layout/fragment_nav_third">
+        <action
+            android:id="@+id/action_navThirdFragment_to_navFiveFragment"
+            app:destination="@id/navFiveFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navFourFragment"
+        android:name="com.example.navigationdemo.NavFourFragment"
+        android:label="fragment_nav_four"
+        tools:layout="@layout/fragment_nav_four" />
+    <fragment
+        android:id="@+id/navFiveFragment"
+        android:name="com.example.navigationdemo.NavFiveFragment"
+        android:label="fragment_nav_five"
+        tools:layout="@layout/fragment_nav_five" />
+    <navigation
+        android:id="@+id/navigation2"
+        app:startDestination="@id/before1Fragment">
+        <fragment
+            android:id="@+id/before1Fragment"
+            android:name="com.example.navigationdemo.Before1Fragment"
+            android:label="fragment_before1"
+            tools:layout="@layout/fragment_before1" >
+            <action
+                android:id="@+id/action_before1Fragment_to_before2Fragment"
+                app:destination="@id/before2Fragment" />
+        </fragment>
+        <fragment
+            android:id="@+id/before2Fragment"
+            android:name="com.example.navigationdemo.Before2Fragment"
+            android:label="fragment_before2"
+            tools:layout="@layout/fragment_before2" />
+        <action
+            android:id="@+id/action_global_navFirstFragment"
+            app:destination="@id/navFirstFragment" />
+    </navigation>
+</navigation>
