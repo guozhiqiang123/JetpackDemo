@@ -6,30 +6,23 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.navGraphViewModels
 import com.example.navigationdemo.databinding.FragmentNavFirstBinding
+import timber.log.Timber
 
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [NavFirstFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class NavFirstFragment : Fragment() {
 
     private lateinit var binding: FragmentNavFirstBinding
 
-    private var param1: String? = null
-    private var param2: String? = null
+//    private val viewModel by navGraphViewModels<NavViewModel>(R.navigation.nav_graph)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+
+//        viewModel.exampleLiveData.observe(this) { value ->
+//            binding.content.text = "$value"
+//        }
     }
 
     override fun onCreateView(
@@ -41,17 +34,27 @@ class NavFirstFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            NavFirstFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+        val navController = findNavController()
+        binding.btn1.setOnClickListener {
+            if (navController.currentDestination?.id == R.id.navFirstFragment) {
+//                val args = NavFirstFragmentDirections
+//                    .actionNavFirstFragmentToNavSecondFragment("参数一", 12)
+//                navController.navigate(args)
+                navController.navigate(R.id.action_navFirstFragment_to_navSecondFragment)
+            } else if (navController.currentDestination?.id == R.id.navSecondFragment) {
+                val args = NavSecondFragmentDirections.actionNavSecondFragmentSelf2("参数二", 20)
+                navController.navigate(args)
+            } else {
+                Timber.d("当前啥也不是")
             }
+        }
+
+        binding.btn2.setOnClickListener {
+            navController.navigate(R.id.action_navFirstFragment_to_navThirdFragment)
+        }
+
+        binding.btn3.setOnClickListener {
+//            viewModel.exampleLiveData.value = 10
+        }
     }
 }

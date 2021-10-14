@@ -13,11 +13,17 @@
         <action
             android:id="@+id/action_navFirstFragment_to_navSecondFragment"
             app:destination="@id/navSecondFragment"
-            app:popEnterAnim="@animator/nav_default_pop_enter_anim"
-            app:popExitAnim="@anim/nav_default_pop_exit_anim" />
+            app:enterAnim="@anim/h_fragment_enter"
+            app:exitAnim="@anim/h_fragment_pop_exit"
+            app:popEnterAnim="@anim/h_fragment_pop_enter"
+            app:popExitAnim="@anim/h_fragment_exit" />
         <action
             android:id="@+id/action_navFirstFragment_to_navThirdFragment"
-            app:destination="@id/navThirdFragment" />
+            app:destination="@id/navThirdFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/navSecondFragment"
@@ -81,6 +87,7 @@
             tools:layout="@layout/fragment_before2" />
         <action
             android:id="@+id/action_global_navFirstFragment"
-            app:destination="@id/navFirstFragment" />
+            app:destination="@id/navFirstFragment"
+            app:exitAnim="@anim/h_fragment_enter" />
     </navigation>
 </navigation>
