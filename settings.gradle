@@ -17,5 +17,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "NavigationDemo"
-include ':app'
+rootProject.name = "JetpackDemo"
+include ':navigation'
